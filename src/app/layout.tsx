@@ -36,7 +36,7 @@ export default function RootLayout({
           <header>
             <Navbar />
           </header>
-          <main className="bg-[#faf3e3] h-screen w-full">{children}</main>
+          <main className="bg-[#faf3e3] w-full">{children}</main>
         </SidebarProvider>
       </body>
     </html>
