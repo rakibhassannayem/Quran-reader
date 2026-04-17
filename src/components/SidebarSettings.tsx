@@ -32,15 +32,15 @@ export function SidebarSettings() {
     <Sidebar side="right" collapsible="offcanvas" variant="inset">
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-2 px-2 py-1.5">
-          <SettingsIcon className="h-4 w-4 text-primary" />
-          <span className="font-semibold">Settings</span>
+          <SettingsIcon className="h-6 w-6 text-primary" />
+          <span className="font-semibold text-lg">Settings</span>
         </div>
       </SidebarHeader>
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Arabic font</SidebarGroupLabel>
-          <SidebarGroupContent className="px-2 space-y-2">
+          <SidebarGroupLabel className="text-base">Arabic font</SidebarGroupLabel>
+          <SidebarGroupContent className="p-2 space-y-4">
             <Select
               value={settings.arabicFont}
               onValueChange={(v) => update("arabicFont", v as ArabicFont)}
@@ -66,8 +66,8 @@ export function SidebarSettings() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel className="flex justify-between">
-            <span>Arabic font size</span>
+          <SidebarGroupLabel className="flex justify-between text-base">
+            <span >Arabic font size</span>
             <span>{settings.arabicFontSize}px</span>
           </SidebarGroupLabel>
           <SidebarGroupContent className="px-3 pt-4 pb-2">
@@ -85,7 +85,7 @@ export function SidebarSettings() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel className="flex justify-between">
+          <SidebarGroupLabel className="flex justify-between text-base">
             <span>Translation font size</span>
             <span>{settings.translationFontSize}px</span>
           </SidebarGroupLabel>
@@ -104,8 +104,8 @@ export function SidebarSettings() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="border-t border-sidebar-border p-4">
-        <Button variant="outline" size="sm" onClick={reset} className="gap-2 w-full">
+      <SidebarFooter className="border-t border-sidebar-border p-5">
+        <Button variant="outline" size="sm" onClick={reset} className="gap-2 w-full text-base">
           <RotateCcw className="h-3.5 w-3.5" />
           Reset to defaults
         </Button>
