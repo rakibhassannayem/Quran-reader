@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
-
 export default function Home() {
   return (
-    <div>
-      <Button>Button</Button>
+    <div className="container mx-auto px-3" >
+      main 
     </div>
   );
 }
+ 
