@@ -47,7 +47,7 @@ export default function RootLayout({
         <SettingsProvider>
           <SidebarProvider defaultOpen={false} className="min-h-full flex flex-col">
             <SidebarSettings />
-            <header>
+            <header className="sticky top-0 z-50">
               <Navbar />
             </header>
             <main className="bg-[#faf3e3] min-h-screen w-full">{children}</main>
