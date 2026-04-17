@@ -8,7 +8,6 @@ import {
   SidebarHeader,
   SidebarFooter,
 } from "@/components/ui/sidebar";
-import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,18 +17,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-// import { useSettings, arabicFontFamily, type ArabicFont } from "@/lib/settings";
-// import { TRANSLATION_EDITIONS, type TranslationEditionId } from "@/lib/quran-api";
+import { useSettings, arabicFontFamily, type ArabicFont } from "@/lib/settings";
 import { Settings as SettingsIcon, RotateCcw } from "lucide-react";
 
-// const ARABIC_FONTS: { id: ArabicFont; label: string }[] = [
-//   { id: "amiri", label: "Amiri (Naskh)" },
-//   { id: "scheherazade", label: "Scheherazade New" },
-//   { id: "noto", label: "Noto Naskh Arabic" },
-// ];
+const ARABIC_FONTS: { id: ArabicFont; label: string }[] = [
+  { id: "amiri", label: "Amiri (Naskh)" },
+  { id: "noto", label: "Noto Naskh Arabic" },
+];
 
 export function SidebarSettings() {
-  // const { settings, update, reset } = useSettings();
+  const { settings, update, reset } = useSettings();
 
   return (
     <Sidebar side="right" collapsible="offcanvas" variant="inset">
@@ -42,30 +39,9 @@ export function SidebarSettings() {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Translation</SidebarGroupLabel>
-          <SidebarGroupContent className="px-2">
-            {/* <Select
-              value={settings.translation}
-              onValueChange={(v) => update("translation", v as TranslationEditionId)}
-            >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {TRANSLATION_EDITIONS.map((e) => (
-                  <SelectItem key={e.id} value={e.id}>
-                    {e.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select> */}
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarGroup>
           <SidebarGroupLabel>Arabic font</SidebarGroupLabel>
           <SidebarGroupContent className="px-2 space-y-2">
-            {/* <Select
+            <Select
               value={settings.arabicFont}
               onValueChange={(v) => update("arabicFont", v as ArabicFont)}
             >
@@ -79,52 +55,60 @@ export function SidebarSettings() {
                   </SelectItem>
                 ))}
               </SelectContent>
-            </Select> */}
-            {/* <div
-              className="arabic mt-2 rounded-md border border-border bg-card px-3 py-2 text-2xl"
+            </Select>
+            <div
+              className="arabic mt-2 rounded-md border border-border bg-card px-3 py-2 text-2xl text-center"
               style={{ fontFamily: arabicFontFamily(settings.arabicFont) }}
             >
               بِسْمِ اللَّهِ
-            </div> */}
+            </div>
           </SidebarGroupContent>
         </SidebarGroup>
 
         <SidebarGroup>
-          {/* <SidebarGroupLabel>
-            Arabic font size — {settings.arabicFontSize}px
-          </SidebarGroupLabel> */}
-          <SidebarGroupContent className="px-3 pt-2">
-            {/* <Slider
-              min={20}
+          <SidebarGroupLabel className="flex justify-between">
+            <span>Arabic font size</span>
+            <span>{settings.arabicFontSize}px</span>
+          </SidebarGroupLabel>
+          <SidebarGroupContent className="px-3 pt-4 pb-2">
+            <Slider
+              min={24}
               max={64}
               step={1}
               value={[settings.arabicFontSize]}
-              onValueChange={(v) => update("arabicFontSize", v[0])}
-            /> */}
+              onValueChange={(v) => {
+                const val = Array.isArray(v) ? v[0] : v;
+                update("arabicFontSize", val as number);
+              }}
+            />
           </SidebarGroupContent>
         </SidebarGroup>
 
         <SidebarGroup>
-          {/* <SidebarGroupLabel>
-            Translation font size — {settings.translationFontSize}px
-          </SidebarGroupLabel> */}
-          <SidebarGroupContent className="px-3 pt-2">
-            {/* <Slider
-              min={12}
+          <SidebarGroupLabel className="flex justify-between">
+            <span>Translation font size</span>
+            <span>{settings.translationFontSize}px</span>
+          </SidebarGroupLabel>
+          <SidebarGroupContent className="px-3 pt-4 pb-2">
+            <Slider
+              min={14}
               max={28}
               step={1}
               value={[settings.translationFontSize]}
-              onValueChange={(v) => update("translationFontSize", v[0])}
-            /> */}
+              onValueChange={(v) => {
+                const val = Array.isArray(v) ? v[0] : v;
+                update("translationFontSize", val as number);
+              }}
+            />
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="border-t border-sidebar-border">
-        {/* <Button variant="outline" size="sm" onClick={reset} className="gap-2">
+      <SidebarFooter className="border-t border-sidebar-border p-4">
+        <Button variant="outline" size="sm" onClick={reset} className="gap-2 w-full">
           <RotateCcw className="h-3.5 w-3.5" />
           Reset to defaults
-        </Button> */}
+        </Button>
       </SidebarFooter>
     </Sidebar>
   );

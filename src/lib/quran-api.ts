@@ -1,4 +1,4 @@
-export type SurahMeta = {
+export type Surah = {
   number: number;
   name: string; // Arabic
   englishName: string;
@@ -15,7 +15,7 @@ export type Ayah = {
   page: number;
 };
 
-export type SurahDetail = SurahMeta & {
+export type SurahDetail = Surah & {
   ayahs: Ayah[];
 };
 
@@ -32,12 +32,12 @@ export const TRANSLATION_EDITIONS = [
 
 export type TranslationEditionId = (typeof TRANSLATION_EDITIONS)[number]["id"];
 
-export async function fetchSurahList(): Promise<SurahMeta[]> {
+export async function fetchSurahList(): Promise<Surah[]> {
   const res = await fetch(`${process.env.BASE_API}/surah`);
 
   if (!res.ok) throw new Error("Failed to fetch surah list");
 
-  const result = (await res.json()) as { data: SurahMeta[] };
+  const result = (await res.json()) as { data: Surah[] };
 
   return result.data;
 }
