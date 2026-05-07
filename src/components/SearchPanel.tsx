@@ -32,7 +32,7 @@ export default function SearchPanel({ isOpen, onClose }: SearchPanelProps) {
     setSearched(true);
     try {
       const res = await fetch(
-        `https://api.alquran.cloud/v1/search/${encodeURIComponent(q)}/all/en.sahih`
+        `https://api.alquran.cloud/v1/search/${encodeURIComponent(q)}/all/en.sahih`,
       );
       if (!res.ok) {
         setResults([]);
@@ -69,7 +69,10 @@ export default function SearchPanel({ isOpen, onClose }: SearchPanelProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-[10vh]">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+      <div
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        onClick={onClose}
+      />
 
       {/* Panel */}
       <div
@@ -85,7 +88,10 @@ export default function SearchPanel({ isOpen, onClose }: SearchPanelProps) {
           className="flex items-center gap-3 px-5 py-4"
           style={{ borderBottom: "1px solid var(--ayah-border)" }}
         >
-          <Search className="w-5 h-5 shrink-0" style={{ color: "var(--accent-teal)" }} />
+          <Search
+            className="w-5 h-5 shrink-0"
+            style={{ color: "var(--accent-teal)" }}
+          />
           <input
             type="text"
             value={query}
@@ -105,10 +111,16 @@ export default function SearchPanel({ isOpen, onClose }: SearchPanelProps) {
         </div>
 
         {/* Results */}
-        <div className="overflow-y-auto surah-sidebar-scroll" style={{ maxHeight: "calc(70vh - 65px)" }}>
+        <div
+          className="overflow-y-auto surah-sidebar-scroll"
+          style={{ maxHeight: "calc(70vh - 65px)" }}
+        >
           {loading ? (
             <div className="flex items-center justify-center py-12">
-              <Loader2 className="w-6 h-6 animate-spin" style={{ color: "var(--accent-teal)" }} />
+              <Loader2
+                className="w-6 h-6 animate-spin"
+                style={{ color: "var(--accent-teal)" }}
+              />
             </div>
           ) : results.length > 0 ? (
             <div className="py-2">
@@ -140,7 +152,10 @@ export default function SearchPanel({ isOpen, onClose }: SearchPanelProps) {
                       {r.surah.name}
                     </span>
                   </div>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-translation)" }}>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ color: "var(--text-translation)" }}
+                  >
                     {r.text}
                   </p>
                 </Link>
@@ -148,11 +163,15 @@ export default function SearchPanel({ isOpen, onClose }: SearchPanelProps) {
             </div>
           ) : searched && !loading ? (
             <div className="text-center py-12">
-              <p style={{ color: "var(--text-muted)" }}>No results found for &quot;{query}&quot;</p>
+              <p style={{ color: "var(--text-muted)" }}>
+                No results found for &quot;{query}&quot;
+              </p>
             </div>
           ) : (
             <div className="text-center py-12">
-              <p style={{ color: "var(--text-muted)" }}>Type to search ayahs across all surahs</p>
+              <p style={{ color: "var(--text-muted)" }}>
+                Type to search ayahs across all surahs
+              </p>
             </div>
           )}
         </div>

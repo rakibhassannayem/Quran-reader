@@ -13,7 +13,12 @@ A modern, responsive, and customizable web application for reading the Holy Qura
 - **Search Capabilities:** Quickly find Surahs or specific verses.
 - **Interactive UI:** Smooth transitions, accessible sidebars, and mobile-friendly drawers.
 
-## 🛠️ Tech Stack
+## � Recent Updates
+
+- **Enhanced Search Experience:** Added a clear button to the surah search input for easy query reset, and improved search panel with ayah-level search capabilities across all surahs.
+- **Streamlined Navigation:** Removed redundant surah toggle button from desktop icon sidebar since the surah sidebar is always visible on larger screens.
+
+## �🛠️ Tech Stack
 
 - **Framework:** [Next.js](https://nextjs.org/) (App Router, React 19)
 - **Language:** TypeScript

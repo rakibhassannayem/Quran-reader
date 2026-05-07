@@ -45,14 +45,20 @@ function SearchInputInner() {
 
 export default function SearchInput() {
   return (
-    <Suspense fallback={
-      <div className="max-w-xl mx-auto mb-10 relative">
-        <div className="relative">
-           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-           <Input className="pl-12 py-6 text-lg rounded-full bg-white" placeholder="Loading search..." disabled />
+    <Suspense
+      fallback={
+        <div className="max-w-xl mx-auto mb-10 relative">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <Input
+              className="pl-12 py-6 text-lg rounded-full bg-white"
+              placeholder="Loading search..."
+              disabled
+            />
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <SearchInputInner />
     </Suspense>
   );
