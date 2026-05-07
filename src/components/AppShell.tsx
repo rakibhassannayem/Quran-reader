@@ -10,7 +10,7 @@ import MobileNav from "@/components/MobileNav";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [isMobile, setIsMobile] = useState(false);
-  const [surahSidebarOpen, setSurahSidebarOpen] = useState(true); // Always open on desktop
+  const [surahSidebarOpen, setSurahSidebarOpen] = useState(false); // Closed by default on mobile
   const [searchOpen, setSearchOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -18,28 +18,17 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     const check = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      // Always keep sidebar open on desktop
-      if (!mobile) {
-        setSurahSidebarOpen(true);
-      }
+      setSurahSidebarOpen(!mobile);
     };
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const handleToggleSurahSidebar = () => {
-    if (isMobile) {
-      setSurahSidebarOpen((v) => !v);
-    }
-    // On desktop, sidebar stays always open — do nothing
-  };
-
   return (
     <>
       {/* Desktop icon sidebar */}
       <IconSidebar
-        onToggleSurahSidebar={handleToggleSurahSidebar}
         onToggleSearch={() => setSearchOpen(true)}
         onToggleSettings={() => setSettingsOpen(true)}
       />

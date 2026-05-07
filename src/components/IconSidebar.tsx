@@ -5,20 +5,17 @@ import { usePathname } from "next/navigation";
 import { BookOpen, Search, Settings, Home } from "lucide-react";
 
 type IconSidebarProps = {
-  onToggleSurahSidebar: () => void;
   onToggleSearch: () => void;
   onToggleSettings: () => void;
 };
 
 const NAV_ITEMS = [
   { id: "home", icon: Home, label: "Home", href: "/" },
-  { id: "surahs", icon: BookOpen, label: "Surahs" },
   { id: "search", icon: Search, label: "Search" },
   { id: "settings", icon: Settings, label: "Settings" },
 ];
 
 export default function IconSidebar({
-  onToggleSurahSidebar,
   onToggleSearch,
   onToggleSettings,
 }: IconSidebarProps) {
