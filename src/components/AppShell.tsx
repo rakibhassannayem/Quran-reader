@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IconSidebar from "@/components/IconSidebar";
 import SurahSidebar from "@/components/SurahSidebar";
 import SearchPanel from "@/components/SearchPanel";
@@ -8,15 +8,37 @@ import SettingsPanel from "@/components/SettingsPanel";
 import MobileNav from "@/components/MobileNav";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
-  const [surahSidebarOpen, setSurahSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [surahSidebarOpen, setSurahSidebarOpen] = useState(true); // Always open on desktop
   const [searchOpen, setSearchOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+
+  useEffect(() => {
+    const check = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      // Always keep sidebar open on desktop
+      if (!mobile) {
+        setSurahSidebarOpen(true);
+      }
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const handleToggleSurahSidebar = () => {
+    if (isMobile) {
+      setSurahSidebarOpen((v) => !v);
+    }
+    // On desktop, sidebar stays always open — do nothing
+  };
 
   return (
     <>
       {/* Desktop icon sidebar */}
       <IconSidebar
-        onToggleSurahSidebar={() => setSurahSidebarOpen((v) => !v)}
+        onToggleSurahSidebar={handleToggleSurahSidebar}
         onToggleSearch={() => setSearchOpen(true)}
         onToggleSettings={() => setSettingsOpen(true)}
         surahSidebarOpen={surahSidebarOpen}
@@ -25,7 +47,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       {/* Surah list sidebar */}
       <SurahSidebar
         isOpen={surahSidebarOpen}
-        onClose={() => setSurahSidebarOpen(false)}
+        onClose={() => {
+          if (isMobile) setSurahSidebarOpen(false);
+        }}
       />
 
       {/* Main content */}
@@ -33,10 +57,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         className="min-h-screen transition-all duration-300 pb-16 md:pb-0"
         style={{
           marginLeft: "var(--icon-sidebar-width)",
-          paddingLeft: surahSidebarOpen ? "var(--surah-sidebar-width)" : "0",
+          paddingLeft: "var(--surah-sidebar-width)",
         }}
       >
-        {/* Hide icon sidebar margin on mobile */}
+        {/* Mobile: remove sidebar margins */}
         <style>{`
           @media (max-width: 767px) {
             main { margin-left: 0 !important; padding-left: 0 !important; }

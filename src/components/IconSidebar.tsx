@@ -58,12 +58,10 @@ export default function IconSidebar({
       {/* Logo */}
       <Link
         href="/"
-        className="flex items-center justify-center w-10 h-10 mb-6 rounded-xl transition-colors"
+        className="flex items-center justify-center w-10 h-10 mb-5 rounded-xl transition-colors bg-primary"
         title="Quran Reader"
       >
-        <span className="text-xl font-bold" style={{ color: "var(--accent-teal)" }}>
-          ﷽
-        </span>
+        <BookOpen className="text-white" />
       </Link>
 
       {/* Nav icons */}
