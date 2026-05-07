@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Menu } from "lucide-react";
 import IconSidebar from "@/components/IconSidebar";
 import SurahSidebar from "@/components/SurahSidebar";
 import SearchPanel from "@/components/SearchPanel";
@@ -66,6 +67,31 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             main { margin-left: 0 !important; padding-left: 0 !important; }
           }
         `}</style>
+
+        {/* Mobile top bar with hamburger */}
+        <div
+          className="sticky top-0 z-30 flex items-center gap-3 px-4 py-3 md:hidden"
+          style={{
+            backgroundColor: "var(--background)",
+            borderBottom: "1px solid var(--ayah-border)",
+          }}
+        >
+          <button
+            onClick={() => setSurahSidebarOpen(true)}
+            className="w-9 h-9 flex items-center justify-center rounded-lg transition-colors cursor-pointer"
+            style={{
+              backgroundColor: "var(--ayah-card-bg)",
+              color: "var(--accent-teal)",
+            }}
+            aria-label="Open surah list"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+          <span className="text-base font-bold" style={{ color: "var(--accent-teal)" }}>
+            Quran Reader
+          </span>
+        </div>
+
         {children}
       </main>
 
