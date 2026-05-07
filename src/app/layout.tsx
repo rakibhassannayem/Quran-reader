@@ -1,36 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Amiri, Noto_Naskh_Arabic } from "next/font/google";
+import { Amiri, Noto_Naskh_Arabic } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/shared/Navbar";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { SidebarSettings } from "@/components/SidebarSettings";
 import { SettingsProvider } from "@/lib/settings";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import AppShell from "@/components/AppShell";
 
 const amiri = Amiri({
   weight: ["400", "700"],
   subsets: ["arabic"],
   variable: "--font-arabic-amiri",
+  display: "swap",
 });
 
 const notoNaskh = Noto_Naskh_Arabic({
   weight: ["400", "700"],
   subsets: ["arabic"],
   variable: "--font-arabic-noto",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Quran Reader",
-  description: "The Holy Quran",
+  title: "Quran Reader — Read, Study, and Learn The Quran",
+  description:
+    "Read the Holy Quran with Arabic text, English translation (Saheeh International), and audio recitation. Search ayahs, customize fonts, and explore all 114 surahs.",
 };
 
 export default function RootLayout({
@@ -41,17 +32,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${amiri.variable} ${notoNaskh.variable} h-full antialiased`}
+      className={`${amiri.variable} ${notoNaskh.variable} h-full antialiased`}
     >
       <body>
         <SettingsProvider>
-          <SidebarProvider defaultOpen={false} className="min-h-full flex flex-col">
-            <SidebarSettings />
-            <header className="sticky top-0 z-50">
-              <Navbar />
-            </header>
-            <main className="bg-[#faf3e3] min-h-screen w-full">{children}</main>
-          </SidebarProvider>
+          <AppShell>{children}</AppShell>
         </SettingsProvider>
       </body>
     </html>
