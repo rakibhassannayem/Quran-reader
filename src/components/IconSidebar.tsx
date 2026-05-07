@@ -20,13 +20,9 @@ export default function IconSidebar({
   onToggleSettings,
 }: IconSidebarProps) {
   const pathname = usePathname();
-  const isSurahPage = pathname.startsWith("/surah");
 
   const handleClick = (id: string) => {
     switch (id) {
-      case "surahs":
-        onToggleSurahSidebar();
-        break;
       case "search":
         onToggleSearch();
         break;
@@ -57,10 +53,7 @@ export default function IconSidebar({
       {/* Nav icons */}
       <nav className="flex flex-col items-center gap-1 flex-1">
         {NAV_ITEMS.map((item) => {
-          const isActive =
-            (item.id === "home" && pathname === "/") ||
-            (item.id === "surahs" && isSurahPage) ||
-            false;
+          const isActive = item.id === "home" && pathname === "/";
 
           const Icon = item.icon;
 

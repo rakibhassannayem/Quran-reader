@@ -91,13 +91,13 @@ export default function SearchPanel({ isOpen, onClose }: SearchPanelProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search ayahs by English or Arabic text..."
-            className="flex-1 bg-transparent text-base outline-none placeholder:text-[var(--text-muted)]"
+            className="flex-1 bg-transparent text-base outline-none placeholder:text-(--text-muted)"
             style={{ color: "var(--foreground)" }}
             autoFocus
           />
           <button
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-[var(--muted)] transition-colors"
+            className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-muted transition-colors"
             style={{ color: "var(--text-muted)" }}
           >
             <X className="w-4 h-4" />
@@ -117,7 +117,7 @@ export default function SearchPanel({ isOpen, onClose }: SearchPanelProps) {
                   key={`${r.surah.number}-${r.numberInSurah}-${idx}`}
                   href={`/surah/${r.surah.number}#ayah-${r.numberInSurah}`}
                   onClick={onClose}
-                  className="block px-5 py-4 transition-colors hover:bg-[var(--muted)]"
+                  className="block px-5 py-4 transition-colors hover:bg-muted"
                   style={{ borderBottom: "1px solid var(--ayah-border)" }}
                 >
                   <div className="flex items-center gap-2 mb-2">

@@ -10,13 +10,6 @@ function SearchInputInner() {
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
 
-  // Listen for external URL clears (e.g. clicking the "Clear Search" generic link)
-  useEffect(() => {
-    if (!searchParams.has("q")) {
-      setSearchQuery("");
-    }
-  }, [searchParams]);
-
   useEffect(() => {
     const delay = setTimeout(() => {
       const currentQ = searchParams.get("q") || "";

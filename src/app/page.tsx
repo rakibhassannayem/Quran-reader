@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="flex items-center justify-center px-6 text-center md:py-24 md:min-h-screen md:overflow-auto overflow-hidden h-[calc(100vh-60px)] md:h-screen border-5">
+    <main className="flex items-center justify-center px-6 text-center md:py-24 md:min-h-screen md:overflow-auto overflow-hidden h-[calc(100vh-60px)] md:h-screen">
       <div className="w-full max-w-4xl">
         <p className="text-xs sm:text-sm uppercase tracking-[0.4em] text-(--accent-teal)">
           Quran Mazid
