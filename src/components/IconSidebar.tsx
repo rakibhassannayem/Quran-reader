@@ -2,18 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  BookOpen,
-  Search,
-  Settings,
-  Home,
-} from "lucide-react";
+import { BookOpen, Search, Settings, Home } from "lucide-react";
 
 type IconSidebarProps = {
   onToggleSurahSidebar: () => void;
   onToggleSearch: () => void;
   onToggleSettings: () => void;
-  surahSidebarOpen: boolean;
 };
 
 const NAV_ITEMS = [
@@ -27,7 +21,6 @@ export default function IconSidebar({
   onToggleSurahSidebar,
   onToggleSearch,
   onToggleSettings,
-  surahSidebarOpen,
 }: IconSidebarProps) {
   const pathname = usePathname();
   const isSurahPage = pathname.startsWith("/surah");
@@ -69,7 +62,7 @@ export default function IconSidebar({
         {NAV_ITEMS.map((item) => {
           const isActive =
             (item.id === "home" && pathname === "/") ||
-            (item.id === "surahs" && (surahSidebarOpen || isSurahPage)) ||
+            (item.id === "surahs" && isSurahPage) ||
             false;
 
           const Icon = item.icon;
@@ -81,15 +74,17 @@ export default function IconSidebar({
                 href={item.href}
                 className="flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200 group relative"
                 style={{
-                  backgroundColor: isActive ? "var(--accent-teal-dim)" : "transparent",
+                  backgroundColor: isActive
+                    ? "var(--accent-teal-dim)"
+                    : "transparent",
                   color: isActive ? "var(--accent-teal)" : "var(--text-muted)",
                 }}
                 title={item.label}
               >
-                <Icon className="w-5 h-5 transition-colors group-hover:text-[var(--accent-teal)]" />
+                <Icon className="w-5 h-5 transition-colors group-hover:text-(--accent-teal)" />
                 {isActive && (
                   <span
-                    className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 rounded-r-full"
+                    className="absolute left-0 top-1/2 -translate-y-1/2 w-0.75 h-5 rounded-r-full"
                     style={{ backgroundColor: "var(--accent-teal)" }}
                   />
                 )}
@@ -103,18 +98,14 @@ export default function IconSidebar({
               onClick={() => handleClick(item.id)}
               className="flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200 group relative cursor-pointer"
               style={{
-                backgroundColor:
-                  (item.id === "surahs" && surahSidebarOpen)
-                    ? "var(--accent-teal-dim)"
-                    : "transparent",
-                color:
-                  (item.id === "surahs" && surahSidebarOpen)
-                    ? "var(--accent-teal)"
-                    : "var(--text-muted)",
+                backgroundColor: isActive
+                  ? "var(--accent-teal-dim)"
+                  : "transparent",
+                color: isActive ? "var(--accent-teal)" : "var(--text-muted)",
               }}
               title={item.label}
             >
-              <Icon className="w-5 h-5 transition-colors group-hover:text-[var(--accent-teal)]" />
+              <Icon className="w-5 h-5 transition-colors group-hover:text-(--accent-teal)" />
             </button>
           );
         })}

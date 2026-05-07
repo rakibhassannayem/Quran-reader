@@ -42,7 +42,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         onToggleSurahSidebar={handleToggleSurahSidebar}
         onToggleSearch={() => setSearchOpen(true)}
         onToggleSettings={() => setSettingsOpen(true)}
-        surahSidebarOpen={surahSidebarOpen}
       />
 
       {/* Surah list sidebar */}
@@ -87,7 +86,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           >
             <Menu className="w-5 h-5" />
           </button>
-          <span className="text-base font-bold" style={{ color: "var(--accent-teal)" }}>
+          <span
+            className="text-base font-bold"
+            style={{ color: "var(--accent-teal)" }}
+          >
             Quran Reader
           </span>
         </div>
@@ -99,7 +101,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <SearchPanel isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
 
       {/* Settings panel */}
-      <SettingsPanel isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} />
+      <SettingsPanel
+        isOpen={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+      />
 
       {/* Mobile bottom nav */}
       <MobileNav
